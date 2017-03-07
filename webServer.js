@@ -47,7 +47,6 @@ var SchemaInfo = require('./schema/schemaInfo.js');
 
 var express = require('express');
 var app = express();
-var ngResource = require('ng-resource');
 
 mongoose.connect('mongodb://localhost/cs142project6');
 
