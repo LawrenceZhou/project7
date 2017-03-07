@@ -47,6 +47,7 @@ var SchemaInfo = require('./schema/schemaInfo.js');
 
 var express = require('express');
 var app = express();
+var ngResource = require('ng-resource');
 
 mongoose.connect('mongodb://localhost/cs142project6');
 
@@ -55,7 +56,6 @@ mongoose.connect('mongodb://localhost/cs142project6');
 app.use(express.static(__dirname));
 app.use(session({secret: 'secretKey', resave: false, saveUninitialized: false}));
 app.use(bodyParser.json());
-angular.module('app', ['ngResource']);
 
 app.get('/', function (request, response) {
     response.send('Simple web server of files from ' + __dirname);
