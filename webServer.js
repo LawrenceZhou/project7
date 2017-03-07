@@ -34,6 +34,11 @@
 var mongoose = require('mongoose');
 var async = require('async');
 
+//new adding
+var session = require('express-session');
+var bodyParser = require('body-parser');
+var multer = require('multer');
+
 
 // Load the Mongoose schema for User, Photo, and SchemaInfo
 var User = require('./schema/user.js');
@@ -48,7 +53,9 @@ mongoose.connect('mongodb://localhost/cs142project6');
 // We have the express static module (http://expressjs.com/en/starter/static-files.html) do all
 // the work for us.
 app.use(express.static(__dirname));
-
+app.use(session({secret: 'secretKey', resave: false, saveUninitialized: false}));
+app.use(bodyParser.json());
+angular.module('app', ['ngResource']);
 
 app.get('/', function (request, response) {
     response.send('Simple web server of files from ' + __dirname);
