@@ -260,6 +260,32 @@ app.get('/photosOfUser/:id', function (request, response) {
 });
 
 
+app.post('/admin/login', function(request, response) {
+     User.findOne({ login_name: request.body.login_name }, function(err, user) {
+        if (err) {
+                // Query returned an error.  We pass it back to the browser with an Internal Service
+                // Error (400) error code.
+                console.error('Doing /user/:id error:', err);
+                response.status(400).send(JSON.stringify(err));
+                return;
+            }
+        if (user === null) {
+            console.log('User with login_name:' + login_name + ' not found.');
+            response.status(400).send('User not found');
+            return;
+        } else {
+      if (request.body.password === user.password) {
+        // sets a cookie with the user's info
+        request.session.user = user;
+        response.redirect('/user/list');
+      } else {
+        console.log('User with login_name:' + login_name + ', password not matched.');
+        response.status(400).send('Password not matched');
+        return;
+      }
+    }
+  });
+});
 var server = app.listen(3000, function () {
     var port = server.address().port;
     console.log('Listening at http://localhost:' + port + ' exporting the directory ' + __dirname);
