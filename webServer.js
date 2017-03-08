@@ -133,7 +133,7 @@ app.get('/test/:p1', function (request, response) {
  */
 app.get('/user/list', function (request, response) {
     if (!request.session.login_name) {
-        return response.status(401).redirect("components/login-register/login-registerTemplate.html");
+        return response.status(401).send("not log in");
     }else {
         // Fetch the user list. 
         User.find({}, { _id : 1, first_name : 1, last_name : 1 },function (err, user) {
