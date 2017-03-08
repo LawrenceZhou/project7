@@ -196,7 +196,6 @@ app.get('/photosOfUser/:id', function (request, response) {
      if (!request.session.login_name) {
         return response.status(401).send("not log in");
     }else {
-        console.log("1", id, request.body.password);
         var id = request.params.id;
     
         if (id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -229,6 +228,7 @@ app.get('/photosOfUser/:id', function (request, response) {
                                 return;
                             }
                             if (user === null) {
+                                console.log('1');
                                 response.status(400).send('Missing user');
                                 return;
                             }
@@ -246,12 +246,14 @@ app.get('/photosOfUser/:id', function (request, response) {
                         });
                     }, function (err) {
                         if (err) {
+                            console.log('2');
                             response.status(400).send(JSON.stringify(err));
                         } 
                         callback_photo(err);
                     });
                 }, function (err) {
                     if (err) {
+                        console.log('3');
                         response.status(400).send(JSON.stringify(err));
                         } 
                     else {
@@ -260,7 +262,7 @@ app.get('/photosOfUser/:id', function (request, response) {
                 });
             });
         }else {
-        console.log("2", id, request.session.password);
+            console.log('4');
         response.status(400).send('User id is not in good format');
         return;  
         }
@@ -288,7 +290,6 @@ app.post('/admin/login', function(request, response) {
         // sets a cookie with the user's info
         request.session._id = user._id;
         request.session.login_name = user.login_name;
-        console.log('session', request.session);
         response.end(JSON.stringify(request.session));
       } else {
         console.log('User with login_name:' + loginName + ', password not matched.');
@@ -307,7 +308,7 @@ app.post('/admin/logout', function(request, response, callback) {
     response.end("");
 });
 
-app.post('/commentsOfPhoto/:photo_id', function(request, response) {
+app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
     if (!request.session.login_name) {
         return response.status(401).send("not log in");
     }else {
@@ -331,16 +332,17 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response) {
                 return response.status(400).send("empty comment");
             }else{
                 var dt = new Date();
-                photo.comments.create({ comment: comment, user_id: request.session.user_id, date_time : dt.toLocaleString()}, doneCallback);
-                function doneCallback(err, newComment){
-                    if (err) {
-                        response.status(400).send(JSON.stringify(err));
-                        return;
-                    }else {
-                        response.end("");
-                    }
-                }
+                photo.comments.push({ comment: comment, user_id: request.session.user_id, date_time : dt.toLocaleString()});
+                //function doneCallback(err, newComment){
+                //    if (err) {
+                //        response.status(400).send(JSON.stringify(err));
+                //        return;
+                //    }else {
+                        response.end(JSON.stringify(photo));
+                 //   }
+                //}
                 photo.save();
+                callback();
             }
         }
     });
