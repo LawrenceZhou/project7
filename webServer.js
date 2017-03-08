@@ -263,6 +263,9 @@ app.get('/photosOfUser/:id', function (request, response) {
 app.post('/admin/login', function(request, response) {
     var loginName = request.body.login_name;
     var pwd = request.body.password;
+    User.find({}, function(err, user) {
+        console.log(user);
+    }
      User.findOne({ login_name: loginName }, function(err, user) {
         if (err) {
                 // Query returned an error.  We pass it back to the browser with an Internal Service
