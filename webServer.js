@@ -296,12 +296,11 @@ app.post('/admin/login', function(request, response) {
   });
 });
 
-app.post('/admin/logout', function(request, response) {
+app.post('/admin/logout', function(request, response, callback) {
     delete request.session.user_id;
     delete request.session.login_name;
-    request.session.destroy(function() {
-        return;
-  });
+    request.session.destroy(function(err) {
+        callback(err)  });
 });
 
 var server = app.listen(3000, function () {
