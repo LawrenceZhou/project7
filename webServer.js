@@ -328,15 +328,15 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
                 return response.status(400).send("empty comment");
             }else{
                 var dt = new Date();
-                photo.comments.push({ comment: comment, user_id: request.session.user_id, date_time : dt.toLocaleString()});
-                //function doneCallback(err, newComment){
-                //    if (err) {
-                //        response.status(400).send(JSON.stringify(err));
-                //        return;
-                //    }else {
+                photo.comments.push({ comment: comment, user_id: request.session.user_id, date_time : dt.toLocaleString()}, doneCallback);
+                function doneCallback(err, newComment){
+                    if (err) {
+                        response.status(400).send(JSON.stringify(err));
+                        return;
+                    }else {
                         response.end(JSON.stringify(photo));
-                 //   }
-                //}
+                    }
+                }
                 callback();
                 photo.save();
             }
