@@ -418,39 +418,12 @@ app.post('/user', function(request, response, callback) {
                 User.create({ login_name: loginname, first_name: firstname, last_name: lastname, location : loc, occupation : occ, description : desc, password : pwd}, doneCallback);
 
                 function doneCallback(err, newUser) {
-                    //assert(!err);
                     console.log('Created object with ID', newUser._id);
                     response.end(JSON.stringify(""));
+                }
             }
+            callback();
         }
-
-        callback();
-/*
-        Photo.findOne({_id: photo_id}, function (err, photo) {
-        // Update photo object
-         if (err) {
-            // Query returned an error.  We pass it back to the browser with an Internal Service
-            // Error (400) error code.
-            console.error('Doing a/commentsOfPhoto/:photo_id error:', err);
-            response.status(400).send(JSON.stringify(err));
-            return;
-        }
-        if (photo === null) {
-            console.log('Photo with photo_id:' + photo_id + ' not found.');
-            response.status(400).send('Photo not found');
-            return;
-        } else {
-            if(comment === "") {
-                return response.status(400).send("empty comment");
-            }else{
-                var dt = new Date();
-                photo.comments.push({ comment: comment, user_id: request.session._id, date_time : dt});
-                response.end(JSON.stringify(photo));
-                photo.save();
-                callback();
-            }
-        }
-    });*/
     }
 });
 
