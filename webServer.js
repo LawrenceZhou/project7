@@ -334,10 +334,10 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
                         response.status(400).send(JSON.stringify(err));
                         return;
                     }else {
-                        callback(err);
                         response.end("");
                     }
                 }
+                callback();
                 photo.save();
             }
         }
