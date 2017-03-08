@@ -42,8 +42,8 @@
 
         <div class="container" flex layout="row">
 
-            <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
-                <div ng-if= "noOneIsLoggedIn()" ng-include="'components/user-list/user-listTemplate.html'" ng-controller="UserListController"></div>
+            <md-sidenav ng-if= "noOneIsLoggedIn()" md-is-locked-open="true" class="md-whiteframe-z2">
+                <div ng-include="'components/user-list/user-listTemplate.html'" ng-controller="UserListController"></div>
             </md-sidenav>
 
             <md-content flex id="content">
