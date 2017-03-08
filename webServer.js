@@ -409,6 +409,7 @@ app.post('/user', function(request, response, callback) {
             return;
         }else{
             var count = User.count({login_name: loginname});
+            console.log("count", count);
             if(count > 0) {
                 console.error('login name is duplicated');
                 response.status(400).send('login name is duplicated');
