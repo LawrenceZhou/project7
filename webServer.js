@@ -328,7 +328,7 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
                 return response.status(400).send("empty comment");
             }else{
                 var dt = new Date();
-                photo.comments.append({ comment: comment, user_id: request.session.user_id, date_time : dt.toLocaleString()}, doneCallback);
+                photo.comments.push({ comment: comment, user_id: request.session.user_id, date_time : dt.toLocaleString()}, doneCallback);
                 //photo.comments.create();
                 console.log(photo.comments);
                 function doneCallback(err, newComment){
