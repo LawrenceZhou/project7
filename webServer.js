@@ -304,7 +304,7 @@ app.post('/admin/logout', function(request, response, callback) {
     response.end("");
 });
 
-app.post('/commentsOfPhoto/:photo_id', function(request, response) {
+app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
     if (!request.session.login_name) {
         return response.status(401).send("not log in");
     }else {
@@ -334,6 +334,7 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response) {
                         response.status(400).send(JSON.stringify(err));
                         return;
                     }else {
+                        callback(err);
                         response.end("");
                     }
                 }
