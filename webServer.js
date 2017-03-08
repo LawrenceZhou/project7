@@ -265,7 +265,6 @@ app.post('/admin/login', function(request, response) {
     var pwd = request.body.password;
     User.find({}, function(err, user) {
         console.log(user);
-        }
     });
      User.findOne({ login_name: loginName }, function(err, user) {
         if (err) {
