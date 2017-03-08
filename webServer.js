@@ -328,13 +328,14 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response) {
                 return response.status(400).send("empty comment");
             }else{
                 var dt = new Date();
-                photo.comments.create({ comment: comment, user_id: request.session.user_id, date_time : dt.toLocaleString()}, doneCallback(err, newComment){
+                photo.comments.create({ comment: comment, user_id: request.session.user_id, date_time : dt.toLocaleString()}, doneCallback);
+                function doneCallback(err, newComment){
                     if (err) {
                         response.status(400).send(JSON.stringify(err));
                     }else {
                         response.status(200).send("");
                     }
-                });
+                }
                 photo.save();
             }
         }
