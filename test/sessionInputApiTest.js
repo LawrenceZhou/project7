@@ -155,6 +155,7 @@ describe('CS142 Photo App Session and Input API - ', function () {
                 assert(!error);
                 assert.strictEqual(response.statusCode, 200, 'HTTP response status code 200');
                 user_id = body._id;
+                assert("id", body._id);
                 done();
             });
 
