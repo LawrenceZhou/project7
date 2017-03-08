@@ -328,7 +328,7 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
                 return response.status(400).send("empty comment");
             }else{
                 var dt = new Date();
-                photo.comments.push({ comment: comment, user_id: request.session.user_id, date_time : dt.toLocaleString()}, doneCallback);
+                photo.comments.push({ comment: comment, user_id: request.session.user_id, date_time : dt.toLocaleString()});
                 //function doneCallback(err, newComment){
                 //    if (err) {
                 //        response.status(400).send(JSON.stringify(err));
@@ -336,7 +336,7 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
                 //    }else {
                         response.end(JSON.stringify(photo));
                  //   }
-                }
+                //}
                 callback();
                 photo.save();
             }
