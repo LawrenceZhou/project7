@@ -411,7 +411,7 @@ app.post('/user', function(request, response, callback) {
             User.count({login_name: loginname}, function (err, count) {
                 if(count > 0) {
                     console.error('login name is duplicated');
-                    response.status(200).send('login name is duplicated');
+                    response.status(400).send('login name is duplicated');
                     return; 
                 }else {
 User.create({ login_name: loginname, first_name: firstname, last_name: lastname, location : loc, occupation : occ, description : desc, password : pwd}, doneCallback);
