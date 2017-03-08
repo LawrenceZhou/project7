@@ -300,6 +300,7 @@ app.post('/admin/logout', function(request, response) {
     delete request.session.user_id;
     delete request.session.login_name;
     request.session.destroy(function() {
+        return;
   });
 });
 
