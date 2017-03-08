@@ -287,7 +287,7 @@ app.post('/admin/login', function(request, response) {
         // sets a cookie with the user's info
         request.session._id = user._id;
         request.session.login_name = user.login_name;
-        console.log('session', equest.session._id);
+        console.log('session', request.session._id);
         response.end(JSON.stringify(""));
       } else {
         console.log('User with login_name:' + loginName + ', password not matched.');
