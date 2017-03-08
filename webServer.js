@@ -280,7 +280,7 @@ app.post('/admin/login', function(request, response) {
         // sets a cookie with the user's info
         request.session.user_id = user._id;
         request.session.login_name = user.login_name;
-        response.status(200).redirect('/user/list');
+        response.end(JSON.stringify(""));
       } else {
         console.log('User with login_name:' + loginName + ', password not matched.');
         response.status(400).send('Password not matched');
