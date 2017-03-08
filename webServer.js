@@ -38,7 +38,7 @@ var async = require('async');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-
+var fs = require("fs");
 
 // Load the Mongoose schema for User, Photo, and SchemaInfo
 var User = require('./schema/user.js');
@@ -328,15 +328,8 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
                 return response.status(400).send("empty comment");
             }else{
                 var dt = new Date();
-                photo.comments.push({ comment: comment, user_id: request.session._id, date_time : dt.toLocaleString()});
-                //function doneCallback(err, newComment){
-                //    if (err) {
-                //        response.status(400).send(JSON.stringify(err));
-                //        return;
-                //    }else {
-                        response.end(JSON.stringify(photo));
-                 //   }
-                //}
+                photo.comments.push({ comment: comment, user_id: request.session._id, date_time : dt});
+                response.end(JSON.stringify(photo));
                 photo.save();
                 callback();
             }
@@ -346,6 +339,52 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
 });
 
 
+app.post('/photos/new', function(request, response, callback) {
+    if (!request.session.login_name) {
+        return response.status(401).send("not log in");
+    }else {
+        var processFormBody = multer({storage: multer.memoryStorage()}).single('uploadedphoto');
+        processFormBody(request, response, function (err) {
+            if (err || !request.file) {
+                console.error('Doing /photo/new error:', err);
+                response.status(400).send(JSON.stringify(err));
+                return;
+            }
+            // request.file has the following properties of interest
+            //      fieldname      - Should be 'uploadedphoto' since that is what we sent
+            //      originalname:  - The name of the file the user uploaded
+            //      mimetype:      - The mimetype of the image (e.g. 'image/jpeg',  'image/png')
+            //      buffer:        - A node Buffer containing the contents of the file
+            //      size:          - The size of the file in bytes
+
+            // XXX - Do some validation here.
+            // We need to create the file in the directory "images" under an unique name. We make
+            // the original file name unique by adding a unique prefix with a timestamp.
+            var timestamp = new Date().valueOf();
+            var filename = 'U' +  String(timestamp) + request.file.originalname;
+
+            fs.writeFile("./images/" + filename, request.file.buffer, function (err) {
+              // XXX - Once you have the file written into your images directory under the name
+              // filename you can create the Photo object in the database
+              if(err){
+                console.error('write file error:', err);
+                response.status(400).send(JSON.stringify(err));
+                return;
+              }else {
+                var dt = new Date();
+                Photo.create({ file_name: filename, date_time: dt, user_id : request.session._id}, doneCallback);
+
+                function doneCallback(err, newPhoto) {
+                    assert (!err);
+                    console.log('Created object with ID', newPhoto._id);
+                    response.end(JSON.stringify(""));
+        }
+              }
+            });
+        });
+        
+    }
+});
 var server = app.listen(3000, function () {
     var port = server.address().port;
     console.log('Listening at http://localhost:' + port + ' exporting the directory ' + __dirname);
