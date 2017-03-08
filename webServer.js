@@ -296,13 +296,11 @@ app.post('/admin/login', function(request, response) {
   });
 });
 
-app.use(function (request, response, next) {
-    var url = request.originalUrl;
-    if (url != "/admin/login" && !request.session.login_name) {
-        return response.status(401).send("not log in");
-    }
-    next();
-});
+app.post('/admin/logout', function(request, response) {
+    delete request.session.user_id;
+    delete request.session.login_name;
+    request.session.destroy(function(err){});
+}
 
 var server = app.listen(3000, function () {
     var port = server.address().port;
