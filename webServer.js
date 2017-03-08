@@ -161,7 +161,7 @@ app.get('/user/:id', function (request, response) {
 
     // Fetch the SchemaInfo. There should only one of them. The query of {} will match it.
     if (id.match(/^[0-9a-fA-F]{24}$/)) {
-        User.findOne({_id: id}, {__v : 0}, function (err, user) {
+        User.findOne({_id: id}, {__v : 0, login_name : 0, password : 0}, function (err, user) {
             if (err) {
                 // Query returned an error.  We pass it back to the browser with an Internal Service
                 // Error (400) error code.
