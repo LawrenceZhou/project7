@@ -34,15 +34,15 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         }); 
 
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
-            if (!noOneIsLoggedIn()) {
+            if (!$scope.noOneIsLoggedIn()) {
                 // no logged user, redirect to /login-register unless already there
                 if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
                     $location.path("/login-register");
                 }
             }
-
-            function noOneIsLoggedIn() {
-                return false;
-            } 
         });
+
+        $scope.noOneIsLoggedIn=function() {
+            return false;
+        };
     }]);
