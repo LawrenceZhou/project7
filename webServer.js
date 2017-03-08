@@ -285,8 +285,9 @@ app.post('/admin/login', function(request, response) {
         } else {
       if (pwd === user.password) {
         // sets a cookie with the user's info
-        request.session.id = user._id;
+        request.session._id = user._id;
         request.session.login_name = user.login_name;
+        onsole.log('session', equest.session._id);
         response.end(JSON.stringify(""));
       } else {
         console.log('User with login_name:' + loginName + ', password not matched.');
