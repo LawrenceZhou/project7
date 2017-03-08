@@ -329,15 +329,13 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
             }else{
                 var dt = new Date();
                 photo.comments.push({ comment: comment, user_id: request.session.user_id, date_time : dt.toLocaleString()}, doneCallback);
-                //photo.comments.create();
-                console.log(photo.comments);
-                function doneCallback(err, newComment){
-                    if (err) {
-                        response.status(400).send(JSON.stringify(err));
-                        return;
-                    }else {
+                //function doneCallback(err, newComment){
+                //    if (err) {
+                //        response.status(400).send(JSON.stringify(err));
+                //        return;
+                //    }else {
                         response.end(JSON.stringify(photo));
-                    }
+                 //   }
                 }
                 callback();
                 photo.save();
