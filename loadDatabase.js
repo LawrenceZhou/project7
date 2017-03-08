@@ -62,6 +62,7 @@ Promise.all(removePromises).then(function () {
                 user.objectID = userObj._id;
                 console.log('Adding user:', user.first_name + ' ' + user.last_name, ' with ID ',
                     user.objectID);
+                console.log("login name: ", user.login_name);
             }
         });
     });
