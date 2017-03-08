@@ -311,6 +311,7 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response) {
     }else {
         var photo_id = request.params.photo_id;
         var comment = request.body.comment;
+        console.log("what?", request.body._id);
         Photo.findOne({_id: photo_id}, function (err, photo) {
         // Update photo object
          if (err) {
