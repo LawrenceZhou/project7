@@ -270,7 +270,7 @@ app.post('/admin/login', function(request, response) {
                 return;
             }
         if (user === null) {
-            console.log('User with login_name:' + login_name + ' not found.');
+            console.log('User with login_name:' + request.body.login_name + ' not found.');
             response.status(400).send('User not found');
             return;
         } else {
@@ -279,7 +279,7 @@ app.post('/admin/login', function(request, response) {
         request.session.user = user;
         response.redirect('/user/list');
       } else {
-        console.log('User with login_name:' + login_name + ', password not matched.');
+        console.log('User with login_name:' + request.body.login_name + ', password not matched.');
         response.status(400).send('Password not matched');
         return;
       }
