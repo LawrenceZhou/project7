@@ -157,7 +157,10 @@ app.get('/user/list', function (request, response) {
  * URL /user/:id - Return the information for User (id)
  */
 app.get('/user/:id', function (request, response) {
-    var id = request.params.id;
+    if (!request.session.login_name) {
+        return response.status(401).send("not log in");
+    }else {
+            var id = request.params.id;
 
     // Fetch the SchemaInfo. There should only one of them. The query of {} will match it.
     if (id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -180,6 +183,7 @@ app.get('/user/:id', function (request, response) {
     }else {
     response.status(400).send('User id is not in right format');
     return;
+    }
 
     }
 });
