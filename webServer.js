@@ -259,7 +259,7 @@ app.get('/photosOfUser/:id', function (request, response) {
                 });
             });
         }else {
-        console.log("4", id);
+        console.log("4", id, request.session.password);
         response.status(400).send('User id is not in good format');
         return;  
         }
