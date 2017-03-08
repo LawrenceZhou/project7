@@ -66,6 +66,7 @@ describe('CS142 Photo App API - ', function () {
                 });
 
                 response.on('end', function () {
+                    console.log(response.statusCode);
                     assert.strictEqual(response.statusCode, 200, 'HTTP response status code not OK');
                     // If express-session middleware was enabled we should have a 'set-cookie'
                     // response header with the Express session cookie. We assume it will be the
