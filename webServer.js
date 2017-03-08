@@ -197,6 +197,7 @@ app.get('/photosOfUser/:id', function (request, response) {
         return response.status(401).send("not log in");
     }else {
         var id = request.params.id;
+        console.log("4", id, request.params.id);
     
         if (id.match(/^[0-9a-fA-F]{24}$/)) {
             var photoListCopy;
