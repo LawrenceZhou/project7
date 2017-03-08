@@ -332,6 +332,7 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response) {
                 function doneCallback(err, newComment){
                     if (err) {
                         response.status(400).send(JSON.stringify(err));
+                        return;
                     }else {
                         response.end("");
                     }
