@@ -132,9 +132,10 @@ app.get('/test/:p1', function (request, response) {
  * URL /user/list - Return all the User object.
  */
 app.get('/user/list', function (request, response) {
-    //response.status(200).send(cs142models.userListModel());
-
-    // Fetch the user list. 
+    if (!request.session.login_name) {
+        return response.status(401).redirect("components/login-register/login-registerTemplate.html");
+    }else {
+        // Fetch the user list. 
         User.find({}, { _id : 1, first_name : 1, last_name : 1 },function (err, user) {
             if (err) {
                 // Query returned an error.  We pass it back to the browser with an Internal Service
@@ -151,6 +152,7 @@ app.get('/user/list', function (request, response) {
             }
             response.end(JSON.stringify(user));
         });
+    }
 });
 
 /*
@@ -158,33 +160,32 @@ app.get('/user/list', function (request, response) {
  */
 app.get('/user/:id', function (request, response) {
     if (!request.session.login_name) {
-        return response.status(401).send("not log in");
+        return response.status(401).redirect("components/login-register/login-registerTemplate.html");
     }else {
-            var id = request.params.id;
+        var id = request.params.id;
 
-    // Fetch the SchemaInfo. There should only one of them. The query of {} will match it.
-    if (id.match(/^[0-9a-fA-F]{24}$/)) {
-        User.findOne({_id: id}, {__v : 0, login_name : 0, password : 0}, function (err, user) {
-            if (err) {
-                // Query returned an error.  We pass it back to the browser with an Internal Service
-                // Error (400) error code.
-                console.error('Doing /user/:id error:', err);
-                response.status(400).send(JSON.stringify(err));
-                return;
-            }
-            if (user === null) {
-                console.log('User with _id:' + id + ' not found.');
-                response.status(400).send('User not found');
-                return;
-            }
-
-            response.end(JSON.stringify(user));
-        });
-    }else {
-    response.status(400).send('User id is not in right format');
-    return;
-    }
-
+        // Fetch the SchemaInfo. There should only one of them. The query of {} will match it.
+        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+            User.findOne({_id: id}, {__v : 0, login_name : 0, password : 0}, function (err, user) {
+                if (err) {
+                    // Query returned an error.  We pass it back to the browser with an Internal Service
+                    // Error (400) error code.
+                    console.error('Doing /user/:id error:', err);
+                    response.status(400).send(JSON.stringify(err));
+                    return;
+                }
+                if (user === null) {
+                    console.log('User with _id:' + id + ' not found.');
+                    response.status(400).send('User not found');
+                    return;
+                }
+    
+                response.end(JSON.stringify(user));
+            });
+        }else {
+        response.status(400).send('User id is not in right format');
+        return;
+        }    
     }
 });
 
@@ -192,75 +193,76 @@ app.get('/user/:id', function (request, response) {
  * URL /photosOfUser/:id - Return the Photos for User (id)
  */
 app.get('/photosOfUser/:id', function (request, response) {
-    var id = request.params.id;
-
-    if (id.match(/^[0-9a-fA-F]{24}$/)) {
-        var photoListCopy;
-        Photo.find({user_id: id}, {__v: 0}, function (err, photoList) {
-            if (err) {
-                console.error('Doing /photosOfUser/:id error:', err);
-                response.status(400).send(JSON.stringify(err));
-                return;
-            }
-            if (photoList === null) {
-                console.log('Photos for user with _id:' + id + ' not found.');
-                response.status(400).send('Photo not found');
-                return;
-            }
-
-            photoListCopy = JSON.parse(JSON.stringify(photoList));
-            for (var i = 0;i< photoListCopy.length; i++) {
-                var dt = new Date(photoListCopy[i].date_time);
-                photoListCopy[i].date_time = dt.toLocaleString();
-            }
-
-            async.each(photoListCopy, function (photo, callback_photo) {
-                async.each(photo.comments, function (comment, callback_comment) {
-                    var userObject = {};
-                    User.findOne({_id: comment.user_id}, function (err, user) {
+     if (!request.session.login_name) {
+        return response.status(401).redirect("components/login-register/login-registerTemplate.html");
+    }else {
+        var id = request.params.id;
+    
+        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+            var photoListCopy;
+            Photo.find({user_id: id}, {__v: 0}, function (err, photoList) {
+                if (err) {
+                    console.error('Doing /photosOfUser/:id error:', err);
+                    response.status(400).send(JSON.stringify(err));
+                    return;
+                }
+                if (photoList === null) {
+                    console.log('Photos for user with _id:' + id + ' not found.');
+                    response.status(400).send('Photo not found');
+                    return;
+                }
+    
+                photoListCopy = JSON.parse(JSON.stringify(photoList));
+                for (var i = 0;i< photoListCopy.length; i++) {
+                    var dt = new Date(photoListCopy[i].date_time);
+                    photoListCopy[i].date_time = dt.toLocaleString();
+                }
+    
+                async.each(photoListCopy, function (photo, callback_photo) {
+                    async.each(photo.comments, function (comment, callback_comment) {
+                        var userObject = {};
+                        User.findOne({_id: comment.user_id}, function (err, user) {
+                            if (err) {
+                                console.error('Doing /photosOfUser/:id error:', err);
+                                response.status(400).send(JSON.stringify(err));
+                                return;
+                            }
+                            if (user === null) {
+                                response.status(400).send('Missing user');
+                                return;
+                            }
+                            userObject._id = user._id;
+                            userObject.first_name = user.first_name;
+                            userObject.last_name = user.last_name;
+    
+                            comment.user = userObject;
+                            delete comment.user_id;
+                            var c_dt = new Date(comment.date_time);
+                            comment.date_time = c_dt.toLocaleString();
+                            
+    
+                            callback_comment(err);
+                        });
+                    }, function (err) {
                         if (err) {
-                            console.error('Doing /photosOfUser/:id error:', err);
                             response.status(400).send(JSON.stringify(err));
-                            return;
-                        }
-                        if (user === null) {
-                            response.status(400).send('Missing user');
-                            return;
-                        }
-                        userObject._id = user._id;
-                        userObject.first_name = user.first_name;
-                        userObject.last_name = user.last_name;
-
-                        comment.user = userObject;
-                        delete comment.user_id;
-                        var c_dt = new Date(comment.date_time);
-                        comment.date_time = c_dt.toLocaleString();
-                        
-
-                        callback_comment(err);
+                        } 
+                        callback_photo(err);
                     });
                 }, function (err) {
                     if (err) {
-                        response.status(400).send(JSON.stringify(err));
-                    } 
-                    callback_photo(err);
+                            response.status(400).send(JSON.stringify(err));
+                        } 
+                    else {
+                        response.status(200).send(photoListCopy);
+                    }
                 });
-            }, function (err) {
-                if (err) {
-                        response.status(400).send(JSON.stringify(err));
-                    } 
-                else {
-                    response.status(200).send(photoListCopy);
-                }
             });
-        });
-    }else {
-    response.status(400).send('User id is not in good format');
-    return;
-
+        }else {
+        response.status(400).send('User id is not in good format');
+        return;  
+        }
     }
-
-    
 });
 
 
