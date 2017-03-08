@@ -375,7 +375,7 @@ app.post('/photos/new', function(request, response, callback) {
                 Photo.create({ file_name: filename, date_time: dt, user_id : request.session._id}, doneCallback);
 
                 function doneCallback(err, newPhoto) {
-                    assert(!err);
+                    //assert(!err);
                     console.log('Created object with ID', newPhoto._id);
                     response.end(JSON.stringify(""));
         }
