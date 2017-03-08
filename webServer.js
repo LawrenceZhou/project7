@@ -304,6 +304,37 @@ app.post('/admin/logout', function(request, response, callback) {
     response.end("");
 });
 
+app.post('/commentsOfPhoto/:photo_id', function(request, response) {
+    if (!request.session.login_name) {
+        return response.status(401).send("not log in");
+    }else {
+        var photo_id = request.params.photo_id;
+        var comment = request.body.comment;
+        Photo.findOne({_id: photo_id}, function (err, photo) {
+        // Update photo object
+         if (err) {
+            // Query returned an error.  We pass it back to the browser with an Internal Service
+            // Error (400) error code.
+            console.error('Doing a/commentsOfPhoto/:photo_id error:', err);
+            response.status(400).send(JSON.stringify(err));
+            return;
+        }
+        if (photo === null) {
+            console.log('Photo with photo_id:' + photo_id + ' not found.');
+            response.status(400).send('Photo not found');
+            return;
+        } else {
+            if(comment === "") {
+                return response.status(400).send("empty comment");
+            }else{
+                photo.save();
+            }
+        }
+    });
+    }
+});
+
+
 var server = app.listen(3000, function () {
     var port = server.address().port;
     console.log('Listening at http://localhost:' + port + ' exporting the directory ' + __dirname);
