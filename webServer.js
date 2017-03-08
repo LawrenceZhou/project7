@@ -337,8 +337,8 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
                         response.end(JSON.stringify(photo));
                  //   }
                 //}
-                photo.save();
                 callback();
+                photo.save();
             }
         }
     });
