@@ -413,18 +413,13 @@ app.post('/user', function(request, response, callback) {
                     console.error('login name is duplicated');
                     response.status(400).send('login name is duplicated');
                     return; 
-                }});
-User.create({ login_name: loginname, first_name: firstname, last_name: lastname, location : loc, occupation : occ, description : desc, password : pwd}, doneCallback);
-
-                function doneCallback(err, newUser) {
-                    console.log('Created object with ID', newUser._id);
-                    response.end(JSON.stringify(""));
                 }
-                
-                    
-              
-            
-               
+            });
+            User.create({ login_name: loginname, first_name: firstname, last_name: lastname, location : loc, occupation : occ, description : desc, password : pwd}, doneCallback);
+            function doneCallback(err, newUser) {
+                console.log('Created object with ID', newUser._id);
+                response.end(JSON.stringify(""));
+            }      
             callback();
         }
     }
