@@ -301,6 +301,7 @@ app.post('/admin/logout', function(request, response, callback) {
     delete request.session.login_name;
     request.session.destroy(function(err) {
         callback(err)  });
+    response.end("");
 });
 
 var server = app.listen(3000, function () {
