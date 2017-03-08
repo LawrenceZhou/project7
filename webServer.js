@@ -274,6 +274,7 @@ app.post('/admin/login', function(request, response) {
                 response.status(400).send(JSON.stringify(err));
                 return;
             }
+        });
         if (user === null) {
             console.log('User with login_name:' + loginName + ' not found.');
             response.status(400).send('User not found');
