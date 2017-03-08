@@ -45,5 +45,4 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 return false;
             } 
         });
-});
     }]);
