@@ -418,6 +418,8 @@ app.post('/user', function(request, response, callback) {
 
             }
         }
+
+        callback();
 /*
         Photo.findOne({_id: photo_id}, function (err, photo) {
         // Update photo object
