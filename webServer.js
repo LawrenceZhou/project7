@@ -160,7 +160,7 @@ app.get('/user/list', function (request, response) {
  */
 app.get('/user/:id', function (request, response) {
     if (!request.session.login_name) {
-        return response.status(401).redirect("components/login-register/login-registerTemplate.html");
+        return response.status(401).send("not log in");
     }else {
         var id = request.params.id;
 
@@ -194,7 +194,7 @@ app.get('/user/:id', function (request, response) {
  */
 app.get('/photosOfUser/:id', function (request, response) {
      if (!request.session.login_name) {
-        return response.status(401).redirect("components/login-register/login-registerTemplate.html");
+        return response.status(401).send("not log in");
     }else {
         var id = request.params.id;
     
