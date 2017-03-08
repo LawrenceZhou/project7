@@ -228,6 +228,7 @@ app.get('/photosOfUser/:id', function (request, response) {
                                 return;
                             }
                             if (user === null) {
+                                console.log("1");
                                 response.status(400).send('Missing user');
                                 return;
                             }
@@ -245,13 +246,15 @@ app.get('/photosOfUser/:id', function (request, response) {
                         });
                     }, function (err) {
                         if (err) {
+                            console.log("2");
                             response.status(400).send(JSON.stringify(err));
                         } 
                         callback_photo(err);
                     });
                 }, function (err) {
                     if (err) {
-                            response.status(400).send(JSON.stringify(err));
+                        console.log("3");
+                        response.status(400).send(JSON.stringify(err));
                         } 
                     else {
                         response.status(200).send(photoListCopy);
@@ -259,6 +262,7 @@ app.get('/photosOfUser/:id', function (request, response) {
                 });
             });
         }else {
+        console.log("4");
         response.status(400).send('User id is not in good format');
         return;  
         }
