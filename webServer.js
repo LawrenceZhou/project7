@@ -415,7 +415,12 @@ app.post('/user', function(request, response, callback) {
                 return; 
             }
             else{
+                User.create({ login_name: loginname, first_name: firstname, last_name: lastname, location : loc, occupation : occ, description : desc, password : pwd}, doneCallback);
 
+                function doneCallback(err, newUser) {
+                    //assert(!err);
+                    console.log('Created object with ID', newUser._id);
+                    response.end(JSON.stringify(""));
             }
         }
 
