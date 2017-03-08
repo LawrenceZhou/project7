@@ -196,6 +196,7 @@ app.get('/photosOfUser/:id', function (request, response) {
      if (!request.session.login_name) {
         return response.status(401).send("not log in");
     }else {
+        console.log("1", id, request.body.password);
         var id = request.params.id;
     
         if (id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -259,7 +260,7 @@ app.get('/photosOfUser/:id', function (request, response) {
                 });
             });
         }else {
-        console.log("4", id, request.session.password);
+        console.log("2", id, request.session.password);
         response.status(400).send('User id is not in good format');
         return;  
         }
