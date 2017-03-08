@@ -267,7 +267,7 @@ app.post('/admin/login', function(request, response) {
         if (err) {
                 // Query returned an error.  We pass it back to the browser with an Internal Service
                 // Error (400) error code.
-                console.error('Doing /user/:id error:', err);
+                console.error('Doing admin/login error:', err);
                 response.status(400).send(JSON.stringify(err));
                 return;
             }
@@ -289,6 +289,15 @@ app.post('/admin/login', function(request, response) {
     }
   });
 });
+
+app.use(function (request, response, next) {
+    var url = request.originalUrl;
+    if (url != "/admin/login" && !request.session.login_name) {
+        return response.status(401).send("not log in");
+    }
+    next();
+});
+
 var server = app.listen(3000, function () {
     var port = server.address().port;
     console.log('Listening at http://localhost:' + port + ' exporting the directory ' + __dirname);
