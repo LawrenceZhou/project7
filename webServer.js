@@ -299,9 +299,7 @@ app.post('/admin/login', function(request, response) {
 app.post('/admin/logout', function(request, response) {
     delete request.session.user_id;
     delete request.session.login_name;
-    request.session.destroy(function(err, callback) {
-     // cannot access session here
-     callback();
+    request.session.destroy(function() {
   });
 });
 
