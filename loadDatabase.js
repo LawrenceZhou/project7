@@ -60,6 +60,7 @@ Promise.all(removePromises).then(function () {
             } else {
                 mapFakeId2RealId[user._id] = userObj._id;
                 user.objectID = userObj._id;
+                console.log("user: ", user);
                 console.log('Adding user:', user.first_name + ' ' + user.last_name, ' with ID ',
                     user.objectID, " login name: ", user.login_name, "password: ", user.password);
             }
