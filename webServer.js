@@ -391,13 +391,13 @@ app.post('/user', function(request, response, callback) {
     if (!request.session.login_name) {
         return response.status(401).send("not log in");
     }else {
-        var loginname = request.body.login_name;
-        var pwd = request.body.password;
-        var firstname = request.body.first_name;
-        var lastname = request.body.last_name;
-        var loc = request.body.location;
-        var desc = request.body.description;
-        var occ = request.body.occupation;
+        var loginname = request.params.login_name;
+        var pwd = request.params.password;
+        var firstname = request.params.first_name;
+        var lastname = request.params.last_name;
+        var loc = request.params.location;
+        var desc = request.params.description;
+        var occ = request.params.occupation;
 
         if(firstname === "") {
             console.error('first name is empty');
@@ -409,6 +409,7 @@ app.post('/user', function(request, response, callback) {
             return;
         }else{
             User.find({login_name: loginname}, function (err, user) {
+
                 var count = user.length;
                 if(count > 0) {
                     console.error('login name is duplicated');
