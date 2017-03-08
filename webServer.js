@@ -333,7 +333,7 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response) {
                     if (err) {
                         response.status(400).send(JSON.stringify(err));
                     }else {
-                        response.status(200).send("");
+                        response.end("");
                     }
                 }
                 photo.save();
