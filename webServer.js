@@ -300,7 +300,7 @@ app.post('/admin/logout', function(request, response) {
     delete request.session.user_id;
     delete request.session.login_name;
     request.session.destroy(function(err){});
-}
+});
 
 var server = app.listen(3000, function () {
     var port = server.address().port;
