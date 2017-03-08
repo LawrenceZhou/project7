@@ -22,55 +22,28 @@ cs142App.config(['$routeProvider',
             });
     }]);
 
-cs142App.controller('MainController', ['$scope', '$resource', 
-    function ($scope, $resource) {
+cs142App.controller('MainController', ['$scope', '$resource', '$location', '$rootScope', '$http',
+    function ($scope, $resource, $location, $rootScope, $http) {
         $scope.main = {};
         $scope.main.title = 'Users';
         $scope.main.toolBar = '';
 
-         /*
-      * FetchModel - Fetch a model from the web server.
-      *   url - string - The URL to issue the GET request.
-      *   doneCallback - function - called with argument (model) when the
-      *                  the GET request is done. The argument model is the
-      *                  objectcontaining the model. model is undefined in 
-      *                  the error case.
-      */
-        /*$scope.FetchModel = function(url, doneCallback) {
-            var  xhrHandler = function() {
-                //Don’t do anything if not final state
-                if (this.readyState!== 4){ 
-                    return; 
-                }
-                //Final State but status not OK
-                if (this.status !== 200) {
-                return;
-                }
-                var model = this.responseText;
-                doneCallback(model);
-            };
-
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = xhrHandler;
-            xhr.open("GET", url);
-            xhr.send();
-        };*/
-
-
-        /*$scope.FetchModel("http://localhost:3000/test/info", function(model){
-            var object = JSON.parse(model);
-            $scope.$apply(function () {
-            // Put your code that updates any $scope variables here
-            $scope.main.version = object.__v;
-            });
-        });*/
-
-
         var version = $resource('http://localhost:3000/test/:param', {param: 'info'}, {});
         var object = version.get({param: 'info'}, function() {
             $scope.main.version = object.__v;
-        });
-    
-             
-    }]);
+        }); 
 
+        $rootScope.$on("$routeChangeStart", function(event, next, current) {
+            if (!noOneIsLoggedIn()) {
+                // no logged user, redirect to /login-register unless already there
+                if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
+                    $location.path("/login-register");
+                }
+            }
+
+            function noOneIsLoggedIn() {
+                return false;
+            } 
+        });
+});
+    }]);
