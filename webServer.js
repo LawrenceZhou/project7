@@ -265,7 +265,8 @@ app.post('/admin/login', function(request, response) {
     var pwd = request.body.password;
     User.find({}, function(err, user) {
         console.log(user);
-    }
+        }
+    });
      User.findOne({ login_name: loginName }, function(err, user) {
         if (err) {
                 // Query returned an error.  We pass it back to the browser with an Internal Service
@@ -274,7 +275,6 @@ app.post('/admin/login', function(request, response) {
                 response.status(400).send(JSON.stringify(err));
                 return;
             }
-        });
         if (user === null) {
             console.log('User with login_name:' + loginName + ' not found.');
             response.status(400).send('User not found');
