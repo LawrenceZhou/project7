@@ -171,7 +171,7 @@ describe('CS142 Photo App Session and Input API - ', function () {
                 photos = body;
                 done();
             });
-        console.log("2222", user_id);
+        assert("2222", user_id);
 
         });
 
