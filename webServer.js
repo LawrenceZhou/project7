@@ -385,6 +385,69 @@ app.post('/photos/new', function(request, response, callback) {
         
     }
 });
+
+
+app.post('/user', function(request, response, callback) {
+    if (!request.session.login_name) {
+        return response.status(401).send("not log in");
+    }else {
+        var loginname = request.body.login_name;
+        var pwd = request.body.password;
+        var firstname = request.body.first_name;
+        var lastname = request.body.last_name;
+        var loc = request.body.location;
+        var desc = request.body.description;
+        var occ = request.body.occupation;
+
+        if(firstname === "") {
+            console.error('first name is empty');
+            response.status(400).send('first name is empty');
+            return;
+        }else if(lastname === "") {
+            console.error('last name is empty');
+            response.status(400).send('last name is empty');
+            return;
+        }else{
+            var count = User.count({login_name: loginname});
+            if(count > 0) {
+                console.error('login name is duplicated');
+                response.status(400).send('login name is duplicated');
+                return; 
+            }
+            else{
+
+            }
+        }
+/*
+        Photo.findOne({_id: photo_id}, function (err, photo) {
+        // Update photo object
+         if (err) {
+            // Query returned an error.  We pass it back to the browser with an Internal Service
+            // Error (400) error code.
+            console.error('Doing a/commentsOfPhoto/:photo_id error:', err);
+            response.status(400).send(JSON.stringify(err));
+            return;
+        }
+        if (photo === null) {
+            console.log('Photo with photo_id:' + photo_id + ' not found.');
+            response.status(400).send('Photo not found');
+            return;
+        } else {
+            if(comment === "") {
+                return response.status(400).send("empty comment");
+            }else{
+                var dt = new Date();
+                photo.comments.push({ comment: comment, user_id: request.session._id, date_time : dt});
+                response.end(JSON.stringify(photo));
+                photo.save();
+                callback();
+            }
+        }
+    });*/
+    }
+});
+
+
 var server = app.listen(3000, function () {
     var port = server.address().port;
     console.log('Listening at http://localhost:' + port + ' exporting the directory ' + __dirname);
