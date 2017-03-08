@@ -336,7 +336,7 @@ app.post('/commentsOfPhoto/:photo_id', function(request, response, callback) {
                         response.status(400).send(JSON.stringify(err));
                         return;
                     }else {
-                        response.end("");
+                        response.end(JSON.stringify(photo));
                     }
                 }
                 callback();
