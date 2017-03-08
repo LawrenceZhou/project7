@@ -261,7 +261,9 @@ app.get('/photosOfUser/:id', function (request, response) {
 
 
 app.post('/admin/login', function(request, response) {
-     User.findOne({ login_name: request.body.login_name }, function(err, user) {
+    var loginName = request.body.login_name;
+    var pwd = request.body.password;
+     User.findOne({ login_name: loginName }, function(err, user) {
         if (err) {
                 // Query returned an error.  We pass it back to the browser with an Internal Service
                 // Error (400) error code.
@@ -270,16 +272,16 @@ app.post('/admin/login', function(request, response) {
                 return;
             }
         if (user === null) {
-            console.log('User with login_name:' + request.body.login_name + ' not found.');
+            console.log('User with login_name:' + loginName + ' not found.');
             response.status(400).send('User not found');
             return;
         } else {
-      if (request.body.password === user.password) {
+      if (pwd === user.password) {
         // sets a cookie with the user's info
         request.session.user = user;
         response.redirect('/user/list');
       } else {
-        console.log('User with login_name:' + request.body.login_name + ', password not matched.');
+        console.log('User with login_name:' + loginName + ', password not matched.');
         response.status(400).send('Password not matched');
         return;
       }
