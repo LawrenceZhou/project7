@@ -14,6 +14,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
               if(response.status === 200) {
                   console.log("log in successful");
                   $location.path("/user/" + response.data._id);
+                  console.log"/user/" + response.data._id);
               }             
           }, function errorCallback(response){
               if(response.status === 400) {
