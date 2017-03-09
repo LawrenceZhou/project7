@@ -60,9 +60,12 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 console.log("server true");
                   return true;
               }             
+          }, function errorCallback(response){
+              if(response.status === 400) {
+                  console.log("server false");
+                return false;              }
           });
-            console.log("server false");
-            return false;
+            
 
         };
     }]);
