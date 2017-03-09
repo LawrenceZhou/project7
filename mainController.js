@@ -68,6 +68,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 console.log("log out unsuccessful");
                 //$scope.login.statusInfo = response.data;
               
-          }); 
+          });
+        } 
         
     }]);
