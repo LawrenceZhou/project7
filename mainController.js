@@ -39,16 +39,15 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         }); 
 
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
-            noOneIsLoggedIn();
-            if ($scope.isLoggedIn) {
+            if (!noOneIsLoggedIn()) {
                 // no logged user, redirect to /login-register unless already there
-                 console.log("true", $scope.isLoggedIn);
-               
-            }else {
+                
                 console.log("false", $scope.isLoggedIn);
                 if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
                     $location.path("/login-register");
                 }
+            }else {
+                console.log("true", $scope.isLoggedIn);
             }
         });
 
@@ -56,6 +55,19 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
             //return true;
 
             var url = '/isLoggedIn';
+
+            var getData = function (url) {
+                var data = "";
+                return $http.get(url).status;
+            };
+            if(getData === 200) {
+                return true;
+            }else{
+                return false;
+            }
+
+
+/*
             var flag = false;
             $http.get(url).then(function successfCallback(response){
               if(response.status === 200) {
@@ -63,17 +75,17 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 $scope.isLoggedIn = true;
                 flag = true;
                 console.log("flag1", flag);
-                return true;
+                //return true;
               }             
           }, function errorCallback(response){
               if(response.status === 400) {
                   console.log("server false");
                   $scope.isLoggedIn = false;
-                return false;              
+                //return false;              
             }
           });
-            //console.log("flag2", flag);
-            //return flag;
+            console.log("flag2", flag);
+            return flag;*/
 
         };
     }]);
