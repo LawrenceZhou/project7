@@ -13,7 +13,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
           $http.post(url, modelObj).then(function successfCallback(response){
               if(reponse.status === 400) {
                   $scope.login.statusInfo = response.data;
-              }else if(reponse.status === 200) {
+              }else if(response.status === 200) {
                   console.log("log in successful");
               }             
           }, function errorCallback(response){
