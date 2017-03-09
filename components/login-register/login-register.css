@@ -1,12 +1,12 @@
 div.cs142-login {
     float: left;
-    max-width: 160px;
+    max-width: 360px;
     margin: 0;
     padding: 1em;
 }
 
 div.cs142-signup {
-    margin-left: 170px;
+    margin-left: 370px;
     border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
