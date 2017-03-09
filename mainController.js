@@ -55,11 +55,5 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
               }             
           });
             return false;
-
-            var photo = $resource(url, {}, {'query': {method: 'GET'}});
-        var photoList = photo.query({}, function() {
-            $scope.photos = photoList;
-        });
-
         };
     }]);
