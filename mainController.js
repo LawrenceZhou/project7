@@ -60,7 +60,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
               if(response.status === 200) {
                 console.log("server true");
                 $scope.isLoggedIn = true;
-                flag =true;
+                flag = true;
                 //return true;
               }             
           }, function errorCallback(response){
@@ -70,7 +70,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 //return false;              
             }
           });
-            
+            console.log("flag", flag);
             return flag;
 
         };
