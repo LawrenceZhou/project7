@@ -53,11 +53,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
               if(response.status === 200) {
                   return true;
               }             
-          }, function errorCallback(response){
-              if(response.status === 400) {
-                  return false;
-              }
-          } );
-            //return false;
+          });
+            return false;
         };
     }]);
