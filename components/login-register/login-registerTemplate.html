@@ -5,13 +5,14 @@
 	<div class = "cs142-loginButton" ng-click = "loginClick()">Log In</div>
 </div>
 <div class="cs142-signup">
-	<span><h4>Login Name</h4><input></input></span>
-	<span><h4>Password</h4><input></input></span>
-	<span><h4>Please enter the password again</h4><input></input></span>
-	<span><h4>First Name</h4><input></input></span>
-	<span><h4>Last Name</h4><input></input></span>
-	<span><h4>Location</h4><input></input></span>
-	<span><h4>Occupation</h4><input></input></span>
-	<span><h4>Description</h4><textarea rows="5"></textarea></span>
+	<span><h4>Login Name</h4><input ng-model = "register.loginName"></input></span>
+	<span><h4>Password</h4><input ng-model = "register.password"></input></span>
+	<span><h4>Please enter the password again</h4><input ng-model = "register.password2"></input></span>
+	<span><h4>First Name</h4><input ng-model = "register.firstName"></input></span>
+	<span><h4>Last Name</h4><input ng-model = "register.lastName"></input></span>
+	<span><h4>Location</h4><input ng-model = "register.location"></input></span>
+	<span><h4>Occupation</h4><input ng-model = "register.occupation"></input></span>
+	<span><h4>Description</h4><textarea rows="5" ng-model = "register.description"></textarea></span>
+	<span>{{register.statusInfo}}</span>
 	<div class = "cs142-registerButton" ng-click="registerClick()">Register Me</div>
 </div>

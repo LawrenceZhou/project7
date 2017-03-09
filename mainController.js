@@ -45,41 +45,13 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         }); 
 
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
-            //var noOneIsLoggedIn = function() {
-             //   return $scope.isLoggedIn;
-            //return true;
-            /*var url = '/isLoggedIn';
-            var flag = false;
-            $http.get(url).then(function successfCallback(response){
-              if(response.status === 200) {
-                console.log("server true");
-                $scope.isLoggedIn = true;
-                flag = true;
-                console.log("flag1", $scope.isLoggedIn);
-                return $scope.isLoggedIn;
-              }else{
-                console.log("server false");
-                $scope.isLoggedIn = false;
-                flag = false;
-                console.log("flag1", $scope.isLoggedIn);
-                return $scope.isLoggedIn;
-              }             
-          });*/
-       // }
-        //var r = noOneIsLoggedIn();
-        //console.log("return", r);
         console.log("flag", $scope.isLoggedIn);
             if (!$scope.isLoggedIn) {
                 // no logged user, redirect to /login-register unless already there
-                
-                console.log("false", $scope.isLoggedIn);
                 if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
                     $location.path("/login-register");
                 }
-            }else {
-                console.log("true", $scope.isLoggedIn);
             }
         });
-
         
     }]);

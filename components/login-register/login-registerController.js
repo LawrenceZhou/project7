@@ -5,7 +5,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
       $scope.login = {};
       $scope.login.loginName = "";
       $scope.login.password = "";
-      $scope.login.statusInfo = "";
+      $scope.login.statusInfo = "";      
 
       $scope.loginClick = function() {
           var url = '/admin/login';
@@ -23,10 +23,19 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
                   $scope.login.statusInfo = response.data;
               }
           }); 
-            
-
-
       }
+
+
+      $scope.register = {};
+      $scope.register.loginName = "";
+      $scope.register.password = "";
+      $scope.register.password2 = "";
+      $scope.register.firstName = "";
+      $scope.register.lastName = "";
+      $scope.register.location = "";
+      $scope.register.occupation = "";
+      $scope.register.description = "";
+      $scope.register.statusInfo = "";
 
 
   }]);
