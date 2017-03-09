@@ -6,8 +6,8 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
       $scope.login.loginName = "";
       $scope.login.password = "";
 
-      $scope.loginClick() {
-        
+      $scope.loginClick = function() {
+
       }
 
 
