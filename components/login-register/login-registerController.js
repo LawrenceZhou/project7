@@ -12,6 +12,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
           var modelObj = JSON.stringify({login_name: $scope.login.loginName, password: $scope.login.password});
           $http.post(url, modelObj).then(function successfCallback(response){
               if(response.status === 200) {
+                  $scope.isLoggedIn = true;
                   console.log("log in successful");
                   $location.path("/users/" + response.data._id.toString());
                   console.log("/users/" + response.data._id.toString());

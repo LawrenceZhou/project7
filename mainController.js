@@ -40,8 +40,9 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
 
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
             var noOneIsLoggedIn = function() {
+                return $scope.isLoggedIn;
             //return true;
-            var url = '/isLoggedIn';
+            /*var url = '/isLoggedIn';
             var flag = false;
             $http.get(url).then(function successfCallback(response){
               if(response.status === 200) {
@@ -57,11 +58,11 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 console.log("flag1", $scope.isLoggedIn);
                 return $scope.isLoggedIn;
               }             
-          });
-        };
+          });*/
+        }
         var r = noOneIsLoggedIn();
         console.log("return", r);
-            if (!$scope.isLoggedIn) {
+            if (!noOneIsLoggedIn()) {
                 // no logged user, redirect to /login-register unless already there
                 
                 console.log("false", $scope.isLoggedIn);
