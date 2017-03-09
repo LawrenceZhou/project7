@@ -38,5 +38,24 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
       $scope.register.description = "";
       $scope.register.statusInfo = "";
 
+       $scope.registerClick = function() {
+          var url = '/user';
+          var modelObj = JSON.stringify({login_name: $scope.register.loginName, password: $scope.register.password,
+            first_name : $scope.register.firstName, last_name : $scope.register.lastName, location : $scope.register.location,
+            occupation : $scope.register.occupation, description : $scope.register.description});
+
+          $http.post(url, modelObj).then(function successfCallback(response){
+            if(response.status === 200) {
+                  $rootScope.$broadcast('Registered');
+                  console.log("registered successful");
+
+          }, function errorfCallback(response){{
+                if(response.status === 400) {
+                    console.log("registered unsuccessful");
+                    $scope.register.statusInfo = response.data;
+                  }
+          });
+       }
+
 
   }]);
