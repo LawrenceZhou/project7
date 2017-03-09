@@ -39,8 +39,8 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         }); 
 
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
-            var noOneIsLoggedIn = function() {
-                return $scope.isLoggedIn;
+            //var noOneIsLoggedIn = function() {
+             //   return $scope.isLoggedIn;
             //return true;
             /*var url = '/isLoggedIn';
             var flag = false;
@@ -59,7 +59,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 return $scope.isLoggedIn;
               }             
           });*/
-        }
+       // }
         //var r = noOneIsLoggedIn();
         //console.log("return", r);
         console.log("flag", $scope.isLoggedIn);
