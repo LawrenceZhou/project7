@@ -53,22 +53,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
 
         var noOneIsLoggedIn = function() {
             //return true;
-
             var url = '/isLoggedIn';
-
-            var getData = function (url) {
-                var data = "";
-                return $http.get(url).status;
-            };
-            console.log("status", getData());
-            if(getData() === 200) {
-                return true;
-            }else{
-                return false;
-            }
-
-
-/*
             var flag = false;
             $http.get(url).then(function successfCallback(response){
               if(response.status === 200) {
@@ -76,17 +61,17 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 $scope.isLoggedIn = true;
                 flag = true;
                 console.log("flag1", flag);
-                //return true;
+                return true;
+              }else{
+                console.log("server false");
+                $scope.isLoggedIn = false;
+                flag = false;
+                console.log("flag1", flag);
+                return false;
               }             
-          }, function errorCallback(response){
-              if(response.status === 400) {
-                  console.log("server false");
-                  $scope.isLoggedIn = false;
-                //return false;              
-            }
+          }
           });
-            console.log("flag2", flag);
-            return flag;*/
+
 
         };
     }]);
