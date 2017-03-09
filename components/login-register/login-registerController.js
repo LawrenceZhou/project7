@@ -49,7 +49,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
                   $rootScope.$broadcast('Registered');
                   console.log("registered successful");
             }
-          }, function errorfCallback(response){{
+          }, function errorfCallback(response){
                 if(response.status === 400) {
                     console.log("registered unsuccessful");
                     $scope.register.statusInfo = response.data;
