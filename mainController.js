@@ -57,9 +57,12 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
             //var modelObj = JSON.stringify({login_name: $scope.login.loginName});
             $http.get(url).then(function successfCallback(response){
               if(response.status === 200) {
+                console.log("server true");
                   return true;
               }             
           });
+            console.log("server false");
             return false;
+
         };
     }]);
