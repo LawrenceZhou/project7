@@ -42,11 +42,13 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
             if (!noOneIsLoggedIn()) {
                 // no logged user, redirect to /login-register unless already there
                 $scope.isLoggedIn = false;
+                console.log("false");
                 if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
                     $location.path("/login-register");
                 }
             }else {
                 $scope.isLoggedIn = true;
+                console.log("true");
             }
         });
 

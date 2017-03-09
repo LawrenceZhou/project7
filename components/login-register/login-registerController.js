@@ -1,6 +1,6 @@
 'use strict';
 
-cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$resource', '$location','$rootScope', '$http',
+cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$resource', '$location', '$rootScope', '$http',
   function($scope, $routeParams, $resource, $location, $rootScope, $http) {
       $scope.login = {};
       $scope.login.loginName = "";
