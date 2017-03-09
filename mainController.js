@@ -19,7 +19,7 @@ cs142App.config(['$routeProvider',
             }).
             when('/login-register', {
                 templateUrl: 'components/login-register/login-registerTemplate.html',
-                controller: 'login-registerController'
+                controller: 'LoginRegisterController'
             }).
             otherwise({
                 redirectTo: '/users'
