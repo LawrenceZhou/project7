@@ -62,17 +62,17 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 $scope.isLoggedIn = true;
                 flag = true;
                 console.log("flag1", flag);
-                //return true;
+                return true;
               }             
           }, function errorCallback(response){
               if(response.status === 400) {
                   console.log("server false");
                   $scope.isLoggedIn = false;
-                //return false;              
+                return false;              
             }
           });
-            console.log("flag2", flag);
-            return flag;
+            //console.log("flag2", flag);
+            //return flag;
 
         };
     }]);
