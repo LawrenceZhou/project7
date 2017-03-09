@@ -421,7 +421,7 @@ app.post('/user', function(request, response, callback) {
                             console.log('Created object with ID', newUser._id);
                             response.end(JSON.stringify(""));
                         }      
-                        callback();
+                        //callback();
                     }
                 }
             });
