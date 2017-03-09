@@ -430,6 +430,7 @@ app.get('/isLoggedIn', function(request, response){
     if (!request.session.login_name) {
         response.status(400).send("not log in");
         console.log("not log in");
+        return;
     }else {
         response.status(200).send("log in");
         console.log("log in");
