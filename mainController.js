@@ -61,6 +61,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 console.log("server true");
                 $scope.isLoggedIn = true;
                 flag = true;
+                console.log("flag1", flag);
                 //return true;
               }             
           }, function errorCallback(response){
@@ -70,7 +71,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 //return false;              
             }
           });
-            console.log("flag", flag);
+            console.log("flag2", flag);
             return flag;
 
         };
