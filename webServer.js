@@ -389,9 +389,9 @@ app.post('/photos/new', function(request, response, callback) {
 
 
 app.post('/user', function(request, response, callback) {
-    if (!request.session.login_name) {
-        return response.status(401).send("not log in");
-    }else {
+    //if (!request.session.login_name) {
+    //    return response.status(401).send("not log in");
+    //}else {
         var loginname = request.params.login_name;
         var pwd = request.params.password;
         var firstname = request.params.first_name;
@@ -423,7 +423,7 @@ app.post('/user', function(request, response, callback) {
             }      
             callback();
         }
-    }
+    //}
 });
 
 
