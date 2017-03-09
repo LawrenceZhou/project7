@@ -426,6 +426,15 @@ app.post('/user', function(request, response, callback) {
     }
 });
 
+app.get('/isLoggedIn', function(request, response){
+    if (!request.session.login_name) {
+        response.status(400).send("not log in");
+    }else {
+        response.status(200).send("log in");
+    }
+        
+});
+
 
 var server = app.listen(3000, function () {
     var port = server.address().port;
