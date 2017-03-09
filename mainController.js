@@ -53,5 +53,21 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 }
             }
         });
+
+
+        $scope.logOutClick = function() {
+          var url = '/admin/logout';
+           $rootScope.$broadcast('LoggedOut');
+            $scope.isLoggedIn = false;
+            $http.post(url, {}).then(function successfCallback(response){
+              if(response.status === 200) {
+                  console.log("log out successful");
+                  $location.path("/login-register");
+              }             
+          }, function errorCallback(response){
+                console.log("log out unsuccessful");
+                //$scope.login.statusInfo = response.data;
+              
+          }); 
         
     }]);
