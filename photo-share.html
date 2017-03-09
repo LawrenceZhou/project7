@@ -44,7 +44,7 @@
         <span flex></span>
         <div class = "cs142-logOutButton" ng-if= "isLoggedIn" ng-click="logOutClick()">log out</div>
         <span flex></span>
-        <h4>{{main.toolBar || ""}}</h4>
+        <h4 ng-if= "isLoggedIn">{{main.toolBar || ""}}</h4>
         </md-toolbar>
 
         <div class="container" flex layout="row">
