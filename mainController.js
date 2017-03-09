@@ -39,19 +39,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         }); 
 
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
-            if (!noOneIsLoggedIn()) {
-                // no logged user, redirect to /login-register unless already there
-                
-                console.log("false", $scope.isLoggedIn);
-                if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
-                    $location.path("/login-register");
-                }
-            }else {
-                console.log("true", $scope.isLoggedIn);
-            }
-        });
-
-        var noOneIsLoggedIn = function() {
+            var noOneIsLoggedIn = function() {
             //return true;
             var url = '/isLoggedIn';
             var flag = false;
@@ -71,4 +59,18 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
               }             
           });
         };
+            
+            if (!noOneIsLoggedIn()) {
+                // no logged user, redirect to /login-register unless already there
+                
+                console.log("false", $scope.isLoggedIn);
+                if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
+                    $location.path("/login-register");
+                }
+            }else {
+                console.log("true", $scope.isLoggedIn);
+            }
+        });
+
+        
     }]);
