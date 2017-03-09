@@ -2,4 +2,8 @@
 	<span><h4>Login Name</h4><input></input></span>
 	<span><h4>Password</h4><input></input></span>
 </div>
-<div class="cs142-signup"></div>
+<div class="cs142-signup"> used localStorage in another project. And I must say I found it quiet helpful. I am glad that we have got a viable replacement for the cookies. It is fast and has ample storage space unlike cookies which was slow as we had to read the cookie from a file and the amount of data per cookie was very limited. Another plus is that localStorage data is not available cross-domain. So no other domain can read your data and no conflicts with variable names either. The only issue that I found was that we could not specify any expiration. I hope they do include in future updates. – Jehanzeb.Malik Aug 29 '13 at 8:24
+  	 	
+@Jehanzeb.Malik web storage gives you ability to define your own scope of expiration. Just add a key-value with timestamp and implement your own logic to overwrite the data or just window.localStorage.clear() which wipes everything. – gertas Aug 31 '13 at 23:15 
+  	 	
+That is the point. We have to create a logic for expiring something from web storage. And our logic will only run if our code (web page) is running on the browser and during that time the coded scheduler decides to expire and remove the data. I require data expiration in most of the web apps that I develop. "If" most of the overall apps developed for web require a functionality than it should be implemented and standardized by browsers. These small things save a lot of time for developers. – Jehanzeb.Malik Sep 2 '13 at 11:02</div>
