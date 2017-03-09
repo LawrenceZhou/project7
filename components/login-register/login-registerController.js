@@ -13,7 +13,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
           $http.post(url, modelObj).then(function successfCallback(response){
               if(response.status === 200) {
                   $scope.isLoggedIn = true;
-                  console.log("log in successful");
+                  console.log("log in successful", $scope.isLoggedIn);
                   $location.path("/users/" + response.data._id.toString());
                   console.log("/users/" + response.data._id.toString());
               }             
