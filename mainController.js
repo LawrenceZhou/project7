@@ -69,9 +69,6 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 console.log("flag1", flag);
                 return false;
               }             
-          }
           });
-
-
         };
     }]);
