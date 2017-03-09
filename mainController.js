@@ -41,13 +41,13 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
             if ($scope.isLoggedIn) {
                 // no logged user, redirect to /login-register unless already there
-                
+                 console.log("true", $scope.isLoggedIn);
+               
+            }else {
                 console.log("false", $scope.isLoggedIn);
                 if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
                     $location.path("/login-register");
                 }
-            }else {
-                console.log("true", $scope.isLoggedIn);
             }
         });
 
