@@ -34,6 +34,11 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         //console.log("changed", $scope.isLoggedIn);
         $scope.isLoggedIn = false;
 
+         $scope.$on('LoggedIn', function() {
+            $scope.isLoggedIn = true;
+
+        });
+
         var version = $resource('http://localhost:3000/test/:param', {param: 'info'}, {});
         var object = version.get({param: 'info'}, function() {
             $scope.main.version = object.__v;

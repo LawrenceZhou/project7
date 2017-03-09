@@ -12,15 +12,14 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
           var modelObj = JSON.stringify({login_name: $scope.login.loginName, password: $scope.login.password});
           $http.post(url, modelObj).then(function successfCallback(response){
               if(response.status === 200) {
-                  $scope.isLoggedIn = true;
-                  console.log("log in successful", $scope.isLoggedIn);
+                  $rootScope.$broadcast('LoggedIn');
+                  console.log("log in successful");
                   $location.path("/users/" + response.data._id.toString());
                   console.log("/users/" + response.data._id.toString());
               }             
           }, function errorCallback(response){
               if(response.status === 400) {
-                console.log("log in unsuccessful", $scope.isLoggedIn);
-                $scope.isLoggedIn = false;
+                console.log("log in unsuccessful");
                   $scope.login.statusInfo = response.data;
               }
           }); 
