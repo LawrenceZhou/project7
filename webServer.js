@@ -401,30 +401,31 @@ app.post('/user', function(request, response, callback) {
         var desc = request.params.description;
         var occ = request.params.occupation;
 
-        if(firstname === "") {
-            console.error('first name is empty');
-            response.status(400).send('first name is empty');
-            return;
-        }else if(lastname === "") {
-            console.error('last name is empty');
-            response.status(400).send('last name is empty');
-            return;
-        }else{
-            User.count({login_name: loginname}, function (err, count) {
+        User.count({login_name: loginname}, function (err, count) {
                 if(count > 0) {
                     console.error('login name is duplicated');
                     response.status(400).send('login name is duplicated');
                     return; 
+                }else{
+                    if(firstname === "") {
+                        console.error('first name is empty');
+                        response.status(400).send('first name is empty');
+                        return;
+                    }else if(lastname === "") {
+                        console.error('last name is empty');
+                        response.status(400).send('last name is empty');
+                        return;
+                    }else{
+                        User.create({ login_name: loginname, first_name: firstname, last_name: lastname, location : loc, occupation : occ, description : desc, password : pwd}, doneCallback);
+                        function doneCallback(err, newUser) {
+                            console.log('Created object with ID', newUser._id);
+                            response.end(JSON.stringify(""));
+                        }      
+                        callback();
+                    }
                 }
             });
-            User.create({ login_name: loginname, first_name: firstname, last_name: lastname, location : loc, occupation : occ, description : desc, password : pwd}, doneCallback);
-            function doneCallback(err, newUser) {
-                console.log('Created object with ID', newUser._id);
-                response.end(JSON.stringify(""));
-            }      
-            callback();
-        }
-    //}
+
 });
 
 
