@@ -31,6 +31,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         $scope.main = {};
         $scope.main.title = 'Users';
         $scope.main.toolBar = '';
+        //console.log("changed", $scope.isLoggedIn);
         $scope.isLoggedIn = false;
 
         var version = $resource('http://localhost:3000/test/:param', {param: 'info'}, {});
