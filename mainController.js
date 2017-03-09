@@ -54,10 +54,12 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
 
         var noOneIsLoggedIn = function() {
             var url = '/isLoggedIn';
+            var flag = false;
             //var modelObj = JSON.stringify({login_name: $scope.login.loginName});
             $http.get(url).then(function successfCallback(response){
               if(response.status === 200) {
                 console.log("server true");
+                flag =true;
                   return true;
               }             
           }, function errorCallback(response){
@@ -66,6 +68,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 return false;              }
           });
             
+            return flag;
 
         };
     }]);
