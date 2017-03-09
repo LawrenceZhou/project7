@@ -39,7 +39,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         }); 
 
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
-            if (!$scope.isLoggedIn) {
+            if ($scope.isLoggedIn) {
                 // no logged user, redirect to /login-register unless already there
                 
                 console.log("false", $scope.isLoggedIn);
