@@ -62,6 +62,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         }
         //var r = noOneIsLoggedIn();
         //console.log("return", r);
+        console.log("flag", $scope.isLoggedIn);
             if (!$scope.isLoggedIn) {
                 // no logged user, redirect to /login-register unless already there
                 
