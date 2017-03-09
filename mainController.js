@@ -60,14 +60,14 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 console.log("server true");
                 $scope.isLoggedIn = true;
                 flag = true;
-                console.log("flag1", flag);
-                return true;
+                console.log("flag1", $scope.isLoggedIn);
+                return $scope.isLoggedIn;
               }else{
                 console.log("server false");
                 $scope.isLoggedIn = false;
                 flag = false;
-                console.log("flag1", flag);
-                return false;
+                console.log("flag1", $scope.isLoggedIn);
+                return $scope.isLoggedIn;
               }             
           });
         };
