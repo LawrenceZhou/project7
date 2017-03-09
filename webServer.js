@@ -393,13 +393,13 @@ app.post('/user', function(request, response, callback) {
     //    return response.status(401).send("not log in");
     //}else {
         console.log('create', request.params, request.body);
-        var loginname = request.params.login_name;
-        var pwd = request.params.password;
-        var firstname = request.params.first_name;
-        var lastname = request.params.last_name;
-        var loc = request.params.location;
-        var desc = request.params.description;
-        var occ = request.params.occupation;
+        var loginname = request.body.login_name;
+        var pwd = request.body.password;
+        var firstname = request.body.first_name;
+        var lastname = request.body.last_name;
+        var loc = request.body.location;
+        var desc = request.body.description;
+        var occ = request.body.occupation;
 
         User.count({login_name: loginname}, function (err, count) {
                 if(count > 0) {
