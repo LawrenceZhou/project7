@@ -47,7 +47,6 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                     $location.path("/login-register");
                 }
             }else {
-                $scope.isLoggedIn = true;
                 console.log("true", $scope.isLoggedIn);
             }
         });
