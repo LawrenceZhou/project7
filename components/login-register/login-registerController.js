@@ -19,6 +19,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
               }             
           }, function errorCallback(response){
               if(response.status === 400) {
+                $scope.isLoggedIn = false;
                   $scope.login.statusInfo = response.data;
               }
           }); 
