@@ -13,8 +13,8 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
           $http.post(url, modelObj).then(function successfCallback(response){
               if(response.status === 200) {
                   console.log("log in successful");
-                  $location.path("/user/" + response.data._id);
-                  console.log("/user/" + response.data._id);
+                  $location.path("/user/" + response.data._id.toString());
+                  console.log("/user/" + response.data._id.toString());
               }             
           }, function errorCallback(response){
               if(response.status === 400) {
