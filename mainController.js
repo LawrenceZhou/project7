@@ -60,8 +60,8 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 var data = "";
                 return $http.get(url).status;
             };
-            console.log("status", getData);
-            if(getData === 200) {
+            console.log("status", getData());
+            if(getData() === 200) {
                 return true;
             }else{
                 return false;
