@@ -11,13 +11,13 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
           var url = '/admin/login';
           var modelObj = JSON.stringify({login_name: $scope.login.loginName, password: $scope.login.password});
           $http.post(url, modelObj).then(function successfCallback(response){
-              if(response.status === 400) {
-                  $scope.login.statusInfo = response.data;
-              }else if(response.status === 200) {
+              if(response.status === 200) {
                   console.log("log in successful");
               }             
           }, function errorCallback(response){
-              $scope.login.statusInfo = "webServer or network down";
+              if(response.status === 400) {
+                  $scope.login.statusInfo = response.data;
+              }
           }); 
             
 
