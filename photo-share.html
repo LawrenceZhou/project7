@@ -36,7 +36,8 @@
         <h3>Yijun Zhou</h3>
         <h6>(version: {{main.version}})</h6>
         <span flex></span>
-        <h6 ng-if= "!noOneIsLoggedIn()">Please log in</h6>
+        <h4 ng-if= "!noOneIsLoggedIn()">Please log in</h4>
+        <h4 ng-if= "noOneIsLoggedIn()">Hi {{main.first_name}}!</h4>
         <span flex></span>
 
         <h4>{{main.toolBar || ""}}</h4>
