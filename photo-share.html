@@ -29,7 +29,7 @@
 
         <script src="components/login-register/login-registerController.js"></script>
         <link rel="stylesheet" type="text/css" href="components/login-register/login-register.css" />
-        
+
         <script src="modelData/photoApp.js"></script>
     </head>
 
@@ -48,7 +48,7 @@
 
         <div class="container" flex layout="row">
 
-            <md-sidenav ng-if= "noOneIsLoggedIn()" md-is-locked-open="true" class="md-whiteframe-z2">
+            <md-sidenav ng-if= "isLoggedIn" md-is-locked-open="true" class="md-whiteframe-z2">
                 <div ng-include="'components/user-list/user-listTemplate.html'" ng-controller="UserListController"></div>
             </md-sidenav>
 

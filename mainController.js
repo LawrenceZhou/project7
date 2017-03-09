@@ -31,6 +31,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         $scope.main = {};
         $scope.main.title = 'Users';
         $scope.main.toolBar = '';
+        $scope.isLoggedIn = false;
 
         var version = $resource('http://localhost:3000/test/:param', {param: 'info'}, {});
         var object = version.get({param: 'info'}, function() {
@@ -40,9 +41,12 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
             if (!noOneIsLoggedIn()) {
                 // no logged user, redirect to /login-register unless already there
+                $scope.isLoggedIn = false;
                 if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
                     $location.path("/login-register");
                 }
+            }else {
+                $scope.isLoggedIn = true;
             }
         });
 
