@@ -48,7 +48,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
             if(response.status === 200) {
                   $rootScope.$broadcast('Registered');
                   console.log("registered successful");
-
+            }
           }, function errorfCallback(response){{
                 if(response.status === 400) {
                     console.log("registered unsuccessful");
