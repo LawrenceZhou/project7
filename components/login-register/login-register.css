@@ -30,3 +30,7 @@ input:focus {
 md-input-container:not(.md-input-invalid).md-input-focused .md-input {
     color: white;
 }
+
+md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: white;
+          }
