@@ -12,6 +12,7 @@ div.cs142-loginButton {
     border: white 3px solid;
     padding: 4px;
     color: white;
+        cursor: pointer;
 }
 
 div.cs142-signup {
@@ -20,7 +21,6 @@ div.cs142-signup {
     padding: 1em;
     overflow: hidden;
     color: white;
-    cursor: pointer;
 }
 
 div.cs142-registerButton {
