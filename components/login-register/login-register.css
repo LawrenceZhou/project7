@@ -1,8 +1,7 @@
-div.cs142-login {
-    float: left;
-    max-width: 360px;
-    margin: 0;
-    padding: 1em;
+div.cs142-loginButton {
+    border: white 3px solid;
+    margin: 4px;
+    padding: 6px;
     color: white;
 }
 
@@ -38,3 +37,4 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
 md-input-container label{
   color: white;
 }
+
