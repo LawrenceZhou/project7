@@ -2,7 +2,7 @@
 
 var cs142App = angular.module('cs142App', ['ngRoute', 'ngMaterial', 'ngResource']);
 
-cs142App.config(['$routeProvider',
+cs142App.config(['$routeProvider', '$mdThemingProvide',
     function ($routeProvider, $mdThemingProvider) {
         $mdThemingProvider.theme('default')
         .dark();
