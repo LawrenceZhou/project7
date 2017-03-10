@@ -374,7 +374,6 @@ app.post('/photos/new', function(request, response, callback) {
               }else {
                 var dt = new Date();
                 Photo.create({ file_name: filename, date_time: dt, user_id : request.session._id}); 
-                    console.log('Created object with ID', newPhoto._id);
                     response.end(JSON.stringify(""));
               }
             });
@@ -413,7 +412,6 @@ app.post('/user', function(request, response, callback) {
                         return;
                     }else{
                         User.create({ login_name: loginname, first_name: firstname, last_name: lastname, location : loc, occupation : occ, description : desc, password : pwd});
-                            console.log('Created object with ID', newUser._id);
                             response.end(JSON.stringify(""));  
                     }
                 }
