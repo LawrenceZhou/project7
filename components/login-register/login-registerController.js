@@ -56,6 +56,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
                   $scope.register.location = "";
                   $scope.register.occupation = "";
                   $scope.register.description = "";
+                  $scope.register.statusInfo = "";
             }
           }, function errorfCallback(response){
                 if(response.status === 400) {
