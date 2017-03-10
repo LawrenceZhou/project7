@@ -402,7 +402,11 @@ app.post('/user', function(request, response, callback) {
                     response.status(400).send('login name is duplicated');
                     return; 
                 }else{
-                    if(firstname === "") {
+                    if(pwd === "") {
+                        console.error('password is empty');
+                        response.status(400).send('password is empty');
+                        return;
+                    }else if(firstname === "") {
                         console.error('first name is empty');
                         response.status(400).send('first name is empty');
                         return;
