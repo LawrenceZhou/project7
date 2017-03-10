@@ -13,9 +13,22 @@ md-toolbar.cs142Project5-toolbar {
 
 div.cs142-logoutButton {
     max-width: 360px;
+    max-height: 15px;
     margin: 4px;
     border: white 3px solid;
     padding: 4px;
     cursor: pointer;
     text-align: center;
+    padding: 0px 12px 0 12px;
+}
+
+div.cs142-uploadButton {
+    max-width: 360px;
+    max-height: 15px;
+    margin: 4px;
+    border: white 3px solid;
+    padding: 4px;
+    cursor: pointer;
+    text-align: center;
+    padding: 0px 12px 0 12px;
 }
