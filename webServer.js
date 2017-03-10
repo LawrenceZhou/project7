@@ -412,10 +412,9 @@ app.post('/user', function(request, response, callback) {
                         response.status(400).send('last name is empty');
                         return;
                     }else{
-                        User.create({ login_name: loginname, first_name: firstname, last_name: lastname, location : loc, occupation : occ, description : desc, password : pwd}, doneCallback(err, newUser) {
+                        User.create({ login_name: loginname, first_name: firstname, last_name: lastname, location : loc, occupation : occ, description : desc, password : pwd});
                             console.log('Created object with ID', newUser._id);
-                            response.end(JSON.stringify(""));
-                        });      
+                            response.end(JSON.stringify(""));  
                     }
                 }
             });
