@@ -42,7 +42,7 @@
         <h4 ng-if= "!isLoggedIn">Please log in</h4>
         <h4 ng-if= "isLoggedIn">Hi {{main.first_name}}!</h4>
         <span flex></span>
-        <div class = "cs142-logOutButton" ng-if= "isLoggedIn" ng-click="logOutClick()">log out</div>
+        <div class = "cs142-logoutButton" ng-if= "isLoggedIn" ng-click="logOutClick()">log out</div>
         <span flex></span>
         <input type="file" ng-if= "isLoggedIn" accept="image/*"  onchange="angular.element(this).scope().inputFileNameChanged(this)">
         <span flex></span>
