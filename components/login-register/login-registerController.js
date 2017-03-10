@@ -39,6 +39,9 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
       $scope.register.statusInfo = "";
 
        $scope.registerClick = function() {
+        if($scope.register.password !== $scope.register.password2) {
+            $scope.register.statusInfo = "Password does not match";
+        }else{
           var url = '/user';
           var modelObj = JSON.stringify({login_name: $scope.register.loginName, password: $scope.register.password,
             first_name : $scope.register.firstName, last_name : $scope.register.lastName, location : $scope.register.location,
@@ -62,8 +65,9 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
                 if(response.status === 400) {
                     console.log("registered unsuccessful");
                     $scope.register.statusInfo = response.data;
-                  }
+                }
           });
+        }         
        }
 
 

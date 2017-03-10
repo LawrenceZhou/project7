@@ -38,5 +38,3 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
 md-input-container label{
   color: white;
 }
-
-md-input-container.md-errors-spacer { display: none; }
