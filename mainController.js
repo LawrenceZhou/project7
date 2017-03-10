@@ -73,7 +73,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 //$scope.login.statusInfo = response.data;
               
           });
-        }
+        };
 
 
         //Upload Photo

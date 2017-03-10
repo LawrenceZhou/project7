@@ -24,7 +24,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
                   $scope.login.statusInfo = response.data;
               }
           }); 
-      }
+      };
 
 
       $scope.register = {};
@@ -68,7 +68,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
                 }
           });
         }         
-       }
+       };
 
 
   }]);

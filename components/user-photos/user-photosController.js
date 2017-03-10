@@ -44,7 +44,7 @@ cs142App.controller('UserPhotosController', ['$scope', '$routeParams', '$resourc
               }
           }); 
       }
-    }
+    };
 
 
   }]);

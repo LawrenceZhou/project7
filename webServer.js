@@ -301,7 +301,7 @@ app.post('/admin/logout', function(request, response, callback) {
     delete request.session.user_id;
     delete request.session.login_name;
     request.session.destroy(function(err) {
-        callback(err)  });
+        callback(err);  });
     response.end("");
 });
 
@@ -375,7 +375,7 @@ app.post('/photos/new', function(request, response, callback) {
                 var dt = new Date();
                 Photo.create({ file_name: filename, date_time: dt, user_id : request.session._id}, doneCallback);
 
-                function doneCallback(err, newPhoto) {
+                doneCallback(err, newPhoto) {
                     //assert(!err);
                     console.log('Created object with ID', newPhoto._id);
                     response.end(JSON.stringify(""));
@@ -417,7 +417,7 @@ app.post('/user', function(request, response, callback) {
                         return;
                     }else{
                         User.create({ login_name: loginname, first_name: firstname, last_name: lastname, location : loc, occupation : occ, description : desc, password : pwd}, doneCallback);
-                        function doneCallback(err, newUser) {
+                        doneCallback(err, newUser) {
                             console.log('Created object with ID', newUser._id);
                             response.end(JSON.stringify(""));
                         }      
