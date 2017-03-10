@@ -87,8 +87,6 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
 
         // Upload the photo file selected by the user using a post request to the URL /photos/new
         $scope.uploadClick = function () {
-            console.log($scope.checkboxModel);
-
             if (!$scope.inputFileNameSelected()) {
                 console.error("uploadPhoto called will no selected file");
                 return;
@@ -111,7 +109,5 @@ cs142App.controller('MainController', ['$scope', '$resource', '$location', '$roo
                 
             });
         };  
-
-  
         
     }]);
