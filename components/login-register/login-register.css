@@ -1,7 +1,16 @@
+div.cs142-login {
+    float: left;
+    max-width: 360px;
+    margin: 0;
+    padding: 1em;
+    color: white;
+}
+
 div.cs142-loginButton {
-    border: white 3px solid;
+    max-width: 360px;
     margin: 4px;
-    padding: 6px;
+    border: white 3px solid;
+    padding: 4px;
     color: white;
 }
 
