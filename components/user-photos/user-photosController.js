@@ -32,6 +32,7 @@ cs142App.controller('UserPhotosController', ['$scope', '$routeParams', '$resourc
               if(response.status === 200) {
                   $rootScope.$broadcast('Commented');
                   console.log("comment successful");
+                  $scope.newComment[photo_id] = "";
                   var photo = $resource('http://localhost:3000/photosOfUser/'+userId, {}, {'query': {method: 'GET', isArray : true}});
                   var photoList = photo.query({}, function() {
                     $scope.photos = photoList;

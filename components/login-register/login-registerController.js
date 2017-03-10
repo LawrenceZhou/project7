@@ -48,6 +48,14 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
             if(response.status === 200) {
                   $rootScope.$broadcast('Registered');
                   console.log("registered successful");
+                  $scope.register.loginName = "";
+                  $scope.register.password = "";
+                  $scope.register.password2 = "";
+                  $scope.register.firstName = "";
+                  $scope.register.lastName = "";
+                  $scope.register.location = "";
+                  $scope.register.occupation = "";
+                  $scope.register.description = "";
             }
           }, function errorfCallback(response){
                 if(response.status === 400) {
