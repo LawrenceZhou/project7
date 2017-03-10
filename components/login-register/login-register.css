@@ -35,6 +35,6 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
     color: white;
 }
 
-.md-inline-form md-input-container label{
+md-input-container label{
   color: white;
 }
