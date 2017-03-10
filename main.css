@@ -10,3 +10,12 @@ md-toolbar.cs142Project5-toolbar {
 #content {
 	background-image: url(images/background.gif);
 }
+
+div.cs142-logoutButton {
+    max-width: 360px;
+    margin: 4px;
+    border: white 3px solid;
+    padding: 4px;
+    cursor: pointer;
+    text-align: center;
+}
