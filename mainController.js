@@ -3,7 +3,10 @@
 var cs142App = angular.module('cs142App', ['ngRoute', 'ngMaterial', 'ngResource']);
 
 cs142App.config(['$routeProvider',
-    function ($routeProvider) {
+    function ($routeProvider, $mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+        .dark();
+
         $routeProvider.
             when('/users', {
                 templateUrl: 'components/user-list/user-listTemplate.html',
