@@ -20,6 +20,16 @@ div.cs142-signup {
     padding: 1em;
     overflow: hidden;
     color: white;
+    cursor: pointer;
+}
+
+div.cs142-registerButton {
+    max-width: 360px;
+    margin: 4px;
+    border: white 3px solid;
+    padding: 4px;
+    color: white;
+    cursor: pointer;
 }
 
 input{
